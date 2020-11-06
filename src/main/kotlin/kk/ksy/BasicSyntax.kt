@@ -1,7 +1,7 @@
 package kk.ksy
 
 fun main() {
-    val hello = "hello world" // immutable
+    val hello = "hello world"
     val warn = null
     val num: Int = 42
     val double: Double = 42.195
@@ -96,6 +96,13 @@ fun main() {
     if (x in 1..y+1) {
         println("fits in range")
     }
+
+
+    val mutableList = mutableListOf("real", "recognize", "real")
+    mutableList.add("!!")
+//    mutableList = mutableListOf("real", "recognize", "real!!")
+
+    println("mutable $mutableList")
 
     val list = listOf("a", "b", "c")
     if(-1 !in 0..list.lastIndex) {
