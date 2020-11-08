@@ -1,5 +1,7 @@
 package kk.ksy
 
+import java.util.concurrent.ConcurrentHashMap
+
 fun main() {
     val hello = "hello world"
     val warn = null
@@ -8,6 +10,19 @@ fun main() {
     val arr: Array<String> = arrayOf("serq", "asdsd")
     var welcome = "asdf"
     welcome = "!!!"
+
+    if (welcome != null) {
+        val welcomeKotlin = welcome.length
+        println("welcome $welcomeKotlin")
+    }
+
+    val nullableString: String? = null
+    println("print ${nullableString?.toInt()}")
+    println("print ${nullableString?.toInt() == null}")
+    println("print ${nullableString?.toInt() ?: 369}")
+
+    // StringUtils.isEmpty(some)
+    welcome.isNullOrEmpty()
 
     System.out.println("hello world by Java, $hello, $warn. $num")
     println("hello world !!!!, $double, $arr, $welcome")
@@ -92,24 +107,21 @@ fun main() {
 
     val x = 10
     val y = 9
-    println(x in 1..y+1)
-    if (x in 1..y+1) {
+    println(x in 1..y + 1)
+    if (x in 1..y + 1) {
         println("fits in range")
     }
 
-
     val mutableList = mutableListOf("real", "recognize", "real")
     mutableList.add("!!")
-//    mutableList = mutableListOf("real", "recognize", "real!!")
-
     println("mutable $mutableList")
 
     val list = listOf("a", "b", "c")
-    if(-1 !in 0..list.lastIndex) {
+    if (-1 !in 0..list.lastIndex) {
         println("-1 is out of range")
     }
 
-    if(list.size !in list.indices) {
+    if (list.size !in list.indices) {
         println("list size is out of valid list indices range, too")
     }
 
@@ -117,8 +129,8 @@ fun main() {
         print(x)
     }
 
-    for(x in 1..10 step 2) print(x)
-    for(x in 9 downTo 0 step 3) print(x)
+    for (x in 1..10 step 2) print(x)
+    for (x in 9 downTo 0 step 3) print(x)
 
     for (item in items) {
         println(item)
@@ -136,6 +148,35 @@ fun main() {
         .sortedBy { it }
         .map { it.toUpperCase() }
         .forEach { println(it) }
+
+    println(emptyList<String>())
+
+    val v1 = "v1";
+    val v2 = "v2";
+
+    // v1.equals(v2)
+    println(v1 == v2)
+
+    val key = "someKey"
+    val map: ConcurrentHashMap<String, Int> = ConcurrentHashMap()
+    val value = map.getOrPut(key) {
+        1
+    }
+
+    listOf(3, 7).maxOrNull()
+    val list1 = listOf<Int>()
+    val maxValue = list1.maxOrNull()
+    // compile error
+    // val sumValue = maxValue * maxValue
+    if(maxValue != null) {
+        val sumValue = maxValue * maxValue
+    }
+
+    // to Int , T? -> T
+    // 단, 값이 null 일 경우 NullPointerException()
+    val list2 = listOf(5)
+    val maxValue2 = list2.maxOrNull()!!
+    val sumValue2 = maxValue2 * maxValue2
 }
 
 
