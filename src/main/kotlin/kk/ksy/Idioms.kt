@@ -6,8 +6,8 @@ fun main() {
 
     val positives = listOf(10, 7, 0, -1).filter { x -> x > 0 }
     println(positives)
-    val positives_shorter = listOf(10, 7, 0, -1).filter { it > 0 }
-    println(positives_shorter)
+    val positivesShorter = listOf(10, 7, 0, -1).filter { it > 0 }
+    println(positivesShorter)
 }
 
 //getters (and setters in case of vars) for all properties
