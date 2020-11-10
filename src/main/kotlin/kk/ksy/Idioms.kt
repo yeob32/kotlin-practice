@@ -1,5 +1,9 @@
 package kk.ksy
 
+import java.lang.IllegalArgumentException
+import java.math.BigDecimal
+import java.util.*
+
 fun main() {
 
     fun foo(a: Int = 0, b: String = "default value") = println("$a, $b")
@@ -32,6 +36,98 @@ fun main() {
     }
     println(p)
 
+    // Extension Functions
+    fun Person.spaceToCamelCase(str: String): String {
+        return str
+    }
+
+    val person = Person("sykim")
+    person.spaceToCamelCase("sdsds")
+
+
+    val values = mapOf("k1" to "v1")
+    try {
+        values["hi"] ?: throw IllegalStateException("Email is missing!")
+    } catch (e: IllegalStateException) {
+        println("ERROR : ${e.message}")
+    }
+
+    val value1: String? = "what is let ?"
+    value1?.let { println(it) }
+
+    val values2 = listOf("apple", null, "banana")
+    for (value in values2) {
+        value?.let { println(it) }
+    }
+
+    fun transform(color: String): Int {
+        return when (color) {
+            "Red" -> 0
+            "Green" -> 1
+            "Blue" -> 2
+            else -> throw IllegalArgumentException("Invalid color param value")
+        }
+    }
+
+    transform("Red")
+
+    val value = try {
+        "hi! hi!"
+    } catch (e: Exception) {
+        println(e)
+    }
+
+    println("try value : $value")
+
+    fun foo(param: Int): String {
+        val value = if (param == 1) {
+            "one"
+        } else if (param == 2) {
+            "two"
+        } else {
+            "three"
+        }
+
+        return value
+    }
+    println("foo : ${foo(3)}")
+
+    fun arrayOfMinusOnes(size: Int): IntArray {
+        return IntArray(size).apply { fill(-1) }
+    }
+
+    println(arrayOfMinusOnes(10).contentToString())
+
+    val myRectangle = Rectangle().apply {
+        length = 4
+        breadth = 5
+        color = 0xFAFAFA
+    }
+
+    println(myRectangle.length)
+
+    fun calcTaxes(): BigDecimal = TODO("이야 이건 또 뭐지")
+
+    var a = 1
+    var b = 2
+    a = b.also { b = a }
+
+    println("a : $a")
+}
+
+class Rectangle {
+    var length: Int = 0
+    var breadth: Int = 0
+    var color: Int = 0
+}
+
+class Person(val name: String) {
+
+}
+
+// Singleton
+object Resource {
+    const val name = "name"
 }
 
 //getters (and setters in case of vars) for all properties
