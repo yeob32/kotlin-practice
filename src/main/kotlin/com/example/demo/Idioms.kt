@@ -1,8 +1,7 @@
-package kk.ksy
+package com.example.demo
 
 import java.lang.IllegalArgumentException
 import java.math.BigDecimal
-import java.util.*
 
 fun main() {
 

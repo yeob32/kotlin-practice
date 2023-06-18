@@ -1,4 +1,4 @@
-package kk.ksy
+package com.example.demo
 
 fun main() {
     InitOrderDemo("hello")

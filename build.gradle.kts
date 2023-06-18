@@ -1,17 +1,31 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.8.0"
+    application
 }
-group = "me.ksy"
+
+group = "com.example.demo"
 version = "1.0-SNAPSHOT"
+
+val coroutineVersion = "1.7.1"
 
 repositories {
     mavenCentral()
 }
+
 dependencies {
-    testImplementation(kotlin("test-junit5"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion")
+
+    testImplementation(kotlin("test"))
 }
-tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "11"
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(11)
+}
+
+application {
+    mainClass.set("MainKt")
 }
